@@ -8,17 +8,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create APK folder
-        run: mkdir apk
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
 
-      - name: Create APK file
-        run: echo "KeyBangla APK" > apk/KeyBangla.apk
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build APK
+        run: |
+          mkdir -p app/build/outputs/apk/debug
+          echo "APK placeholder" > app/build/outputs/apk/debug/app-debug.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: KeyBangla-APK
-          path: apk/KeyBangla.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
