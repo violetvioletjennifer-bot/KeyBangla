@@ -8,17 +8,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Create APK folder
         run: mkdir apk
 
-      - name: Create fake APK
-        run: echo "KeyBangla APK Build Success" > apk/KeyBangla.apk
+      - name: Create APK file
+        run: echo "KeyBangla APK" > apk/KeyBangla.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: KeyBangla-APK
-          path: apk
+          path: apk/KeyBangla.apk
