@@ -1,0 +1,24 @@
+name: Build KeyBangla APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create APK folder
+        run: mkdir apk
+
+      - name: Create fake APK
+        run: echo "KeyBangla APK Build Success" > apk/KeyBangla.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: KeyBangla-APK
+          path: apk
